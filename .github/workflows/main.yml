@@ -19,7 +19,7 @@ jobs:
      uses: docker/build-push-action@v6
      with:
       context: ./src
-      file: ./stc/Dockerfile
+      file: ./src/Dockerfile
       push: true
       tags: |
         rafaj2ee/fake-shop:latest
@@ -30,9 +30,15 @@ jobs:
   runs-on: ubuntu-latest
   needs: [ci]
   steps:
-   - name: Autenticar na AWS
-     run: echo "Executando comando aws configure"
-   - name: Configurar o kubctl
-     run: echo "Executando o comando aws eks update-kubeconfig"
-   - name: Deploy dos manifestos no kubernetes
-     run: echo "Executando comando kubectl apply"
+    - name: Obter o código do porjeto
+      uses: actions/checkout@v4    
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+    - name: Configurar o kubctl
+      run: echo "Executando o comando aws eks update-kubeconfig"
+    - name: Deploy dos manifestos no kubernetes
+      run: echo "Executando comando kubectl apply"
