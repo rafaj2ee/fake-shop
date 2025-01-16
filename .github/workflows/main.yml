@@ -39,6 +39,6 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
     - name: Configurar o kubctl
-      run: echo "Executando o comando aws eks update-kubeconfig"
+      run: aws eks update-kubeconfig --name meucluster
     - name: Deploy dos manifestos no kubernetes
       run: echo "Executando comando kubectl apply"
