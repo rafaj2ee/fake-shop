@@ -50,7 +50,7 @@ spec:
   spec:
    containers:
     - name: fakeshop
-      image: rafaj2ee/fake-shop:v1
+      image: rafaj2ee/fake-shop:latest
       ports:
        - containerPort: 5000
       env:

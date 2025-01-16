@@ -15,8 +15,15 @@ jobs:
      with:
       username: ${{ secrets.DOCKERHUB_USERNAME }}
       password: ${{ secrets.DOCKERHUB_TOKEN }}
-   - name: Construção da Imagem Docker
-     run: echo "Executando o comando Docker Build"
+   - name: Build and push
+     uses: docker/build-push-action@v6
+     with:
+      context: ./src
+      file: ./stc/Dockerfile
+      push: true
+      tags: |
+        rafaj2ee/fake-shop:latest
+        rafaj2ee/fake-shop:v${{ github.run_number }}
    - name: Envio de imagem Docker
      run: echo "Executando comando Docker Push"
  cd:
