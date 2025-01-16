@@ -8,3 +8,4 @@ RUN chmod +x /app/entrypoint.sh
 ENV PROMETHEUS_MULTIPROC_DIR=/tmp/metrics
 RUN mkdir -p /tmp/metrics 
 CMD ["/app/entrypoint.sh"]
+# formato de entrypoint precisa ser convertido para linux no windows
