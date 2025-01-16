@@ -47,10 +47,6 @@ jobs:
     - name: Deploy dos manifestos no kubernetes
       uses: Azure/k8s-deploy@v5
       with:
-       action: deploy
-       strategy: basic
-  
-       private-cluster: true
        manifests: |
           ./k8s/deployment.yaml
        images: |
