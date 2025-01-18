@@ -40,11 +40,16 @@ kind: Deployment
 metadata:
  name: fakeshop
 spec:
+ replicas: 3
  selector:
   matchLabels:
    app: fakeshop
  template:
   metadata:
+   annotations:
+    prometheus.io/scrape: 'true'
+    prometheus.io/port: '5000'
+    prometheus.io/path: '/metrics'
    labels:
     app: fakeshop
   spec:
